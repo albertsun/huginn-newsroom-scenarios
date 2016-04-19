@@ -14,11 +14,12 @@
       "disabled": false,
       "guid": "a3817606515748c31c3bfa32465ff8e2",
       "options": {
-        "post_url": "http://example.com/stevedore",
+        "post_url": "http://example.com/huginn-eeoc-news/doc/{{ id }}",
         "expected_receive_period_in_days": "1",
         "content_type": "json",
         "method": "post",
         "payload": {
+          "_type": "doc",
           "id": "{{ id }}",
           "title": "{{ title }}",
           "source_url": "{{ url }}",
