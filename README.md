@@ -36,10 +36,12 @@ These are currently configured with random existing websites to be replaced.
 * Watch a website for changes, then send an email  
     `WebsiteAgent -> EmailAgent`  
     [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/website-email-notifier.json)  
+    In this case, one of Donald Trump's position pages
 
-* Watch a website for changes, then send a slack notification  
+* Watch a website for changes in text, then send a slack notification  
     `WebsiteAgent -> SlackAgent`  
     [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/website-slack-notifier.json)  
+    In this case, one of Donald Trump's position pages
 
 * Scrape a website and save it's text to [Stevedore](https://github.com/newsdev/stevedore)  
     `WebsiteAgent -> PostAgent`  
@@ -48,14 +50,21 @@ These are currently configured with random existing websites to be replaced.
 * Follow an RSS feed, and send the full text of its items to [Stevedore](https://github.com/newsdev/stevedore)  
     `RssAgent -> WebsiteAgent -> PostAgent`  
     [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/rss-full-text-scrape-to-stevedore.json)  
+    In this case, scraping all EEOC press releases
 
 * Filter the NYTimes Timeswire API and email stories matching a regex  
-  `WebsiteAgent -> TriggerAgent -> EmailAgent`  
-  [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/timeswire-story-filter-email.json)  
+    `WebsiteAgent -> TriggerAgent -> EmailAgent`  
+    [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/timeswire-story-filter-email.json)  
+    In this case, filtering for any politics stories
 
-* _TK_ alert a Slack channel when the lead story on the homepage is changed
-* _TK_ email a reporter when their story is published by the CMS
-* _TK_ detect a spike in twitter mentions of a story URL and send a notification
+* Alert a Slack channel when the lead story on the homepage is changed
+    `WebsiteAgent -> SlackAgent`  
+    [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/hp-top-story-to-slack.json)  
+
+* Get a morning email with new stories from a particular author
+    `WebsiteAgent -> TriggerAgent -> EmailDigestAgent`  
+    [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/author-filter-morning-email.json)  
+    In this case, following http://www.theverge.com/tag/fitness and filtering for stories by Lauren Goode
 
 
 ### Importing Scenarios

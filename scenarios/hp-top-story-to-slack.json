@@ -1,20 +1,20 @@
 {
   "schema_version": 1,
-  "name": "Website Slack Notifier",
-  "description": "Scrape a website into slack",
-  "source_url": false,
-  "guid": "2176cbdc72468e0044c7895dff5cb6e4",
+  "name": "HP Top Story to Slack",
+  "description": "No description provided",
+  "source_url": "https://mighty-retreat-48764.herokuapp.com/scenarios/8/export",
+  "guid": "c52256bb070585b69ece8c06b4ecfc63",
   "tag_fg_color": "#ffffff",
   "tag_bg_color": "#5bc0de",
-  "exported_at": "2016-04-18T21:05:01Z",
+  "exported_at": "2016-04-19T19:11:45Z",
   "agents": [
     {
       "type": "Agents::SlackAgent",
       "name": "codeconvening-test slack",
       "disabled": false,
-      "guid": "b90e88f7babfdef67940437f852e90f8",
+      "guid": "3f07421f70b95405e27fbe4120c0ca8e",
       "options": {
-        "webhook_url": "{% credential slack_webhook %}",
+        "webhook_url": "{% credential nytnews_slack_webhook %}",
         "channel": "#codeconvening-test",
         "username": "Huginn",
         "message": "{{text}}",
@@ -24,22 +24,26 @@
     },
     {
       "type": "Agents::WebsiteAgent",
-      "name": "Donald Trump Wall",
+      "name": "nytimes.com top story",
       "disabled": false,
-      "guid": "f820bf7d25c0fc527280a0c05d905b1f",
+      "guid": "efd5a6ff202f442629c45f1b87443eb0",
       "options": {
         "expected_update_period_in_days": "2",
-        "url": "https://www.donaldjtrump.com/positions/pay-for-the-wall",
+        "url": "http://www.nytimes.com",
         "type": "html",
         "mode": "on_change",
         "extract": {
-          "text": {
-            "css": "article.press_item.entry",
-            "value": "normalize-space(.)"
+          "url": {
+            "xpath": "(//article/h2[@class='story-heading']/a)[1]",
+            "value": "@src"
+          },
+          "title": {
+            "xpath": "(//article/h2[@class='story-heading']/a)[1]",
+            "value": ".//text()"
           }
         }
       },
-      "schedule": "every_30m",
+      "schedule": "every_5m",
       "keep_events_for": 0,
       "propagate_immediately": false
     }

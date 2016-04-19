@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "name": "Author Filter Morning Email",
+  "description": "Follow a page for new stories by a certain author. Send a morning email with any new ones.",
+  "source_url": "http://huginn.adm.prd.newsdev.nytimes.com/scenarios/3/export",
+  "guid": "744240cbb57a1cd14fbe7ec88036314e",
+  "tag_fg_color": "#ffffff",
+  "tag_bg_color": "#5bc0de",
+  "exported_at": "2016-04-19T19:30:24Z",
+  "agents": [
+    {
+      "type": "Agents::EmailDigestAgent",
+      "name": "New Verge Fitness Story",
+      "disabled": false,
+      "guid": "3b65f1347debe69360040da5e646f582",
+      "options": {
+        "subject": "New Verge Fitness Story",
+        "headline": "Stories:",
+        "expected_receive_period_in_days": "14"
+      },
+      "schedule": "9am",
+      "propagate_immediately": false
+    },
+    {
+      "type": "Agents::WebsiteAgent",
+      "name": "The Verge | Fitness",
+      "disabled": false,
+      "guid": "5bf76d444b933622331f6a60ef5a591b",
+      "options": {
+        "expected_update_period_in_days": "10",
+        "url": "http://www.theverge.com/tag/fitness",
+        "type": "html",
+        "mode": "on_change",
+        "extract": {
+          "url": {
+            "css": "li.p-basic-article-list__node h3 a",
+            "value": "@href"
+          },
+          "title": {
+            "css": "li.p-basic-article-list__node h3 a",
+            "value": ".//text()"
+          },
+          "excerpt": {
+            "css": "li.p-basic-article-list__node p.blurb",
+            "value": "normalize-space(.)"
+          },
+          "byline": {
+            "css": "li.p-basic-article-list__node p.byline a",
+            "value": "normalize-space(.)"
+          }
+        }
+      },
+      "schedule": "every_2h",
+      "keep_events_for": 0,
+      "propagate_immediately": false
+    },
+    {
+      "type": "Agents::TriggerAgent",
+      "name": "By Lauren Goode Filter",
+      "disabled": false,
+      "guid": "a03977fa2c809ee2862d4351a46cf289",
+      "options": {
+        "expected_receive_period_in_days": "14",
+        "keep_event": "true",
+        "rules": [
+          {
+            "type": "field==value",
+            "value": "Lauren Goode",
+            "path": "byline"
+          }
+        ],
+        "message": "New story by {{value}}!"
+      },
+      "keep_events_for": 2592000,
+      "propagate_immediately": true
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "receiver": 2
+    },
+    {
+      "source": 2,
+      "receiver": 0
+    }
+  ],
+  "control_links": [
+
+  ]
+}
