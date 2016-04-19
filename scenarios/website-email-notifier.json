@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "name": "Website Notifier",
+  "description": "Scrape a website and notify via email when it changes",
+  "source_url": "https://mighty-retreat-48764.herokuapp.com/scenarios/1/export",
+  "guid": "ce4d15de1dc26cd4dbc17c88cfc03c1c",
+  "tag_fg_color": "#ffffff",
+  "tag_bg_color": "#5bc0de",
+  "exported_at": "2016-04-18T16:56:11Z",
+  "agents": [
+    {
+      "type": "Agents::EmailAgent",
+      "name": "Donald Trump Email Notifier",
+      "disabled": false,
+      "guid": "9c61eccfd02f22c23d8fe461bbc46805",
+      "options": {
+        "subject": "Donald Trump's Website Changed",
+        "headline": "Your notification:",
+        "expected_receive_period_in_days": "2"
+      },
+      "propagate_immediately": true
+    },
+    {
+      "type": "Agents::WebsiteAgent",
+      "name": "Donald Trump Wall",
+      "disabled": false,
+      "guid": "f820bf7d25c0fc527280a0c05d905b1f",
+      "options": {
+        "expected_update_period_in_days": "2",
+        "url": "https://www.donaldjtrump.com/positions/pay-for-the-wall",
+        "type": "html",
+        "mode": "on_change",
+        "extract": {
+          "text": {
+            "css": "article.press_item.entry",
+            "value": "normalize-space(.)"
+          }
+        }
+      },
+      "schedule": "every_30m",
+      "keep_events_for": 0,
+      "propagate_immediately": false
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "receiver": 0
+    }
+  ],
+  "control_links": [
+
+  ]
+}

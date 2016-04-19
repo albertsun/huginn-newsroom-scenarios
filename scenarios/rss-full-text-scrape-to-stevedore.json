@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "name": "RSS Full Text Scrape to Stevedore",
+  "description": "Follows an RSS feed and visits every feed item to save the full text into Stevedore",
+  "source_url": "https://mighty-retreat-48764.herokuapp.com/scenarios/7/export",
+  "guid": "1dcba6751110ed460f0a83273953535e",
+  "tag_fg_color": "#ffffff",
+  "tag_bg_color": "#5bc0de",
+  "exported_at": "2016-04-18T22:41:41Z",
+  "agents": [
+    {
+      "type": "Agents::PostAgent",
+      "name": "EEOC Post to Stevedore",
+      "disabled": false,
+      "guid": "a3817606515748c31c3bfa32465ff8e2",
+      "options": {
+        "post_url": "http://example.com/stevedore",
+        "expected_receive_period_in_days": "1",
+        "content_type": "json",
+        "method": "post",
+        "payload": {
+          "id": "{{ id }}",
+          "title": "{{ title }}",
+          "source_url": "{{ url }}",
+          "file": {
+            "title": "{{ title }}",
+            "file": "{{ body_text }}"
+          },
+          "analyzed": {
+            "body": "{{ body_text }}",
+            "metadata": {
+              "Content-Type": "text/plain"
+            }
+          }
+        },
+        "headers": {
+        },
+        "emit_events": "false",
+        "no_merge": "true"
+      },
+      "schedule": "never",
+      "keep_events_for": 0,
+      "propagate_immediately": true
+    },
+    {
+      "type": "Agents::RssAgent",
+      "name": "EEOC RSS",
+      "disabled": false,
+      "guid": "bcff007b3576fb801ffbb1288e95e920",
+      "options": {
+        "expected_update_period_in_days": "5",
+        "clean": "false",
+        "url": "https://www1.eeoc.gov/eeoc/newsroom/index.cfm?xml=eeoc_press,RSS2.0full"
+      },
+      "schedule": "every_5h",
+      "keep_events_for": 2592000
+    },
+    {
+      "type": "Agents::WebsiteAgent",
+      "name": "EEOC News Page Scrape",
+      "disabled": false,
+      "guid": "f68d5d70c4d0265eef284486a299dbd4",
+      "options": {
+        "expected_update_period_in_days": "2",
+        "url_from_event": "{{url}}",
+        "type": "html",
+        "mode": "merge",
+        "extract": {
+          "title": {
+            "css": "div h1",
+            "value": "normalize-space(.)"
+          },
+          "body_text": {
+            "css": "#CS_Element_Content",
+            "value": "normalize-space(.)"
+          }
+        }
+      },
+      "schedule": "never",
+      "keep_events_for": 0,
+      "propagate_immediately": true
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "receiver": 2
+    },
+    {
+      "source": 2,
+      "receiver": 0
+    }
+  ],
+  "control_links": [
+
+  ]
+}
