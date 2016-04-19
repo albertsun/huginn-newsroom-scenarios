@@ -4,32 +4,20 @@
 
 At The New York Times we've been [using it](https://source.opennews.org/en-US/articles/open-source-bot-factory/) for a few years to automate a variety of routine tasks. A few tasks it could be used for: monitor a webpage and alert you when it changes; alert a Slack channel when the lead story on the homepage is changed; email a reporter when their story is published by the CMS; regularly scrape a database and save it's results; and more.
 
-## How to Install
-
-If you don't already have an instance of Huginn you can use, the easiest way to deploy is with the one-click [Heroku installer](https://github.com/cantino/huginn/#heroku).
-
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/cantino/huginn)
-
-* Click to deploy the app
-* Run the command line `bin/setup_heroku` to configure an admin user, domain
-* Either use the generated invite code or set a new one from
-* Set up a sendgrid add-on to be able to send email
-
-[Full Huginn Heroku documentation](https://github.com/cantino/huginn/blob/master/doc/heroku/install.md)
-
-## How to Use
-
+* [How to Install](#how-to-install)
 * [Creating an account](#creating-an-account)
-* [Import a scenario](#importing-scenarios)
+* [Import a scenario](#list-of-scenarios)
 * [Configure any credentials necessary](#user-credentials)
 * [Go back to each agent and edit as necessary](#modify-agents-after-importing)
 * [Picking CSS selectors from page](#more-on-css-selectors)
 
 ### Creating an Account
 
-Signing up for an account should be straightforward. Either use the invitation code provided by whoever installed the app, or which you set up in Heroku.
+There's no central Huginn website, each installation is maintained separately. If someone has already set-up Huginn for you, use the invitation code and URL they've provided you.
 
-If you have neither, there is currently a public install maintained by @albertsun at https://mighty-retreat-48764.herokuapp.com which you can register for with the invitation code `try-huginn`.
+If you have just want to try it out, there is a demo public install maintained by @albertsun at https://mighty-retreat-48764.herokuapp.com which you can register for with the invitation code `try-huginn`.
+
+If you are slightly comfortable with the command line, have a Heroku account, you can run your own [Huginn installation](#how-to-install).
 
 ### Basic Concepts
 
@@ -39,7 +27,7 @@ When you first create your account, it will have no agents. To get started, the 
 
 ### List of Scenarios
 
-You can find Scenarios provided by other Huginn users, or we're currently providing several useful scenarios as gists.
+You can find Scenarios provided by other Huginn users, or we're currently providing several useful scenarios as gists. To use one of these, grab the JSON from the Scenario Definition link and either modify and upload it, or paste the link to use it directly.
 
 [Scenario Definitions](https://gist.github.com/albertsun/7e5cffc84a450c7d587f05f9f5b6938e)
 
@@ -148,3 +136,18 @@ One of the most common and trickiest tasks for using Huginn is finding how to se
 
 There's more documentation in the Huginn [WebsiteAgent](https://github.com/cantino/huginn/blob/master/app/models/agents/website_agent.rb#L38) page. One recommended way to find the right selectors is the [SelectorGadget](http://selectorgadget.com/) bookmarklet. Or using Firebug or your browser's built in developer tools.
 
+
+## How to Install
+
+If you don't already have an instance of Huginn you can use, the easiest way to deploy is with the one-click [Heroku installer](https://github.com/cantino/huginn/#heroku).
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/cantino/huginn)
+
+* Click to deploy the app
+* Run the command line `bin/setup_heroku` to configure an admin user, domain
+* Either use the generated invite code or set a new one from
+* Set up a sendgrid add-on to be able to send email
+
+[Full Huginn Heroku documentation](https://github.com/cantino/huginn/blob/master/doc/heroku/install.md)
+
+The main Huginn documentation is written for develoeprs and there are many other [installation options](https://github.com/cantino/huginn/#getting-started).
