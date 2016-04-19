@@ -1,5 +1,9 @@
 # Huginn for Newsrooms
 
+[Huginn](https://github.com/cantino/huginn/) is a system for building agents that can automate many common web tasks. Think of it as an open source, more flexible version of IFTTT or a successor to Yahoo Pipes. It can let users quickly create simple bots or schedule and repeat routine tasks.
+
+At The New York Times we've been [using it](https://source.opennews.org/en-US/articles/open-source-bot-factory/) for a few years to automate a variety of routine tasks. A few tasks it could be used for: monitor a webpage and alert you when it changes; alert a Slack channel when the lead story on the homepage is changed; email a reporter when their story is published by the CMS; regularly scrape a database and save it's results; and more.
+
 ## How to Install
 
 If you don't already have an instance of Huginn you can use, the easiest way to deploy is with the one-click [Heroku installer](https://github.com/cantino/huginn/#heroku).
@@ -15,11 +19,11 @@ If you don't already have an instance of Huginn you can use, the easiest way to 
 
 ## How to Use
 
-* Create an account
-* Import a scenario
-* Configure any credentials necessary
-* Go back to each agent and edit as necessary
-* Picking CSS selectors from page
+* [Creating an account](#creating-an-account)
+* [Import a scenario](#importing-scenarios)
+* [Configure any credentials necessary](#user-credentials)
+* [Go back to each agent and edit as necessary](#modify-agents-after-importing)
+* [Picking CSS selectors from page](#more-on-css-selectors)
 
 ### Creating an Account
 
@@ -115,7 +119,7 @@ In the EmailAgent, the options to change would be `subject` for the subject line
 
 Then in the WebsiteAgent, you would set the `url` option to the page you want to scrape, and then the `extract` hash with what elements on the page should be selected. Use a CSS selector in `css` and an XPath expression in `value` to select the value from the selected elements. If you just want full text, leave the value as `normalize-space(.)`. Set `schedule` to specify how frequently the website should be checked. Valid options are [here](https://github.com/cantino/huginn/wiki/Creating-a-new-agent#scheduling).
 
-### Configure/Add Credentials
+### User Credentials
 
 In the options for some agents, you'll see a tag like this `{% credential slack_webhook %}`. In the [Liquid templating language](https://github.com/cantino/huginn/wiki/Formatting-Events-using-Liquid) that Huginn uses that means to use a user credential. It's a more secure way to configure agents with secret variables like passwords and authentication tokens.
 
@@ -137,3 +141,10 @@ The [Huginn wiki](https://github.com/cantino/huginn/wiki/) has more examples of 
 For example, with an Email Agent it will by default send emails to whatever email address you registered with. If you want to send email to a different address, go to edit the agent and add a `recipients` option with the email address (or multiple addresses as an array) which should receive the email.
 
 Every agent will have a section of documentation on create or edit page explaining the options it uses.
+
+### More on CSS Selectors
+
+One of the most common and trickiest tasks for using Huginn is finding how to select the proper parts of pages for the WebsiteAgent. This requires some comfort and understanding of the DOM tree to be able to pick out the right nodes.
+
+There's more documentation in the Huginn [WebsiteAgent](https://github.com/cantino/huginn/blob/master/app/models/agents/website_agent.rb#L38) page. One recommended way to find the right selectors is the [SelectorGadget](http://selectorgadget.com/) bookmarklet. Or using Firebug or your browser's built in developer tools.
+
