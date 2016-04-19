@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "name": "Website Slack Notifier",
+  "description": "Scrape a website into slack",
+  "source_url": false,
+  "guid": "2176cbdc72468e0044c7895dff5cb6e4",
+  "tag_fg_color": "#ffffff",
+  "tag_bg_color": "#5bc0de",
+  "exported_at": "2016-04-18T21:05:01Z",
+  "agents": [
+    {
+      "type": "Agents::SlackAgent",
+      "name": "codeconvening-test slack",
+      "disabled": false,
+      "guid": "b90e88f7babfdef67940437f852e90f8",
+      "options": {
+        "webhook_url": "{% credential slack_webhook %}",
+        "channel": "#codeconvening-test",
+        "username": "Huginn",
+        "message": "{{text}}",
+        "icon": ""
+      },
+      "propagate_immediately": true
+    },
+    {
+      "type": "Agents::WebsiteAgent",
+      "name": "Donald Trump Wall",
+      "disabled": false,
+      "guid": "f820bf7d25c0fc527280a0c05d905b1f",
+      "options": {
+        "expected_update_period_in_days": "2",
+        "url": "https://www.donaldjtrump.com/positions/pay-for-the-wall",
+        "type": "html",
+        "mode": "on_change",
+        "extract": {
+          "text": {
+            "css": "article.press_item.entry",
+            "value": "normalize-space(.)"
+          }
+        }
+      },
+      "schedule": "every_30m",
+      "keep_events_for": 0,
+      "propagate_immediately": false
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "receiver": 0
+    }
+  ],
+  "control_links": [
+
+  ]
+}

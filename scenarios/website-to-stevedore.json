@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "name": "Website to Stevedore",
+  "description": "Scrape a website and insert it's changes into Stevedore",
+  "source_url": false,
+  "guid": "4c970fc0789eb9c9117a33b4a60bf776",
+  "tag_fg_color": "#ffffff",
+  "tag_bg_color": "#5bc0de",
+  "exported_at": "2016-04-18T21:42:51Z",
+  "agents": [
+    {
+      "type": "Agents::PostAgent",
+      "name": "Donald Trump Stevedore Insert Agent",
+      "disabled": false,
+      "guid": "83ebd85c425a91a222711563e83f6425",
+      "options": {
+        "post_url": "http://example.com/stevedore",
+        "expected_receive_period_in_days": "1",
+        "content_type": "json",
+        "method": "post",
+        "payload": {
+          "id": "https://www.donaldjtrump.com/positions/pay-for-the-wall",
+          "title": "Donald Trump Pay for the Wall",
+          "source_url": "https://www.donaldjtrump.com/positions/pay-for-the-wall",
+          "file": {
+            "title": "Donald Trump Pay for the Wall",
+            "file": "{{ text }}"
+          },
+          "analyzed": {
+            "body": "{{ text }}",
+            "metadata": {
+              "Content-Type": "text/plain"
+            }
+          }
+        },
+        "headers": {
+        },
+        "emit_events": "false",
+        "no_merge": "true"
+      },
+      "schedule": "never",
+      "keep_events_for": 0,
+      "propagate_immediately": true
+    },
+    {
+      "type": "Agents::WebsiteAgent",
+      "name": "Donald Trump Wall",
+      "disabled": false,
+      "guid": "f820bf7d25c0fc527280a0c05d905b1f",
+      "options": {
+        "expected_update_period_in_days": "2",
+        "url": "https://www.donaldjtrump.com/positions/pay-for-the-wall",
+        "type": "html",
+        "mode": "on_change",
+        "extract": {
+          "text": {
+            "css": "article.press_item.entry",
+            "value": "normalize-space(.)"
+          }
+        }
+      },
+      "schedule": "every_30m",
+      "keep_events_for": 0,
+      "propagate_immediately": false
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "receiver": 0
+    }
+  ],
+  "control_links": [
+
+  ]
+}
