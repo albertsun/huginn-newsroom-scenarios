@@ -19,7 +19,7 @@ At The New York Times we've been [using it](https://source.opennews.org/en-US/ar
 
 There's no central Huginn website, each installation is maintained separately. If someone has already set-up Huginn for you, use the invitation code and URL they've provided you.
 
-If you have just want to try it out, there is a demo public install maintained by @albertsun at https://mighty-retreat-48764.herokuapp.com which you can register for with the invitation code `try-huginn`.
+If you have just want to try it out, there is a demo public install maintained by @albertsun at [https://mighty-retreat-48764.herokuapp.com](https://mighty-retreat-48764.herokuapp.com) which you can register for with the invitation code `try-huginn`.
 
 If you are slightly comfortable with the command line, have a Heroku account, you can run your own [Huginn installation](#how-to-install).
 
