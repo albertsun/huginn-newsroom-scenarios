@@ -33,41 +33,41 @@ When you first create your account, it will have no agents. To get started, the 
 
 You can find Scenarios provided by other Huginn users, or we're currently providing several useful scenarios as gists. To use one of these, grab the JSON from the Scenario Definition link and either modify and upload it, or paste the link to use it directly.
 
-[Scenario Definitions](https://gist.github.com/albertsun/7e5cffc84a450c7d587f05f9f5b6938e)
+[Scenario Definitions](https://github.com/albertsun/huginn-newsroom-scenarios/tree/gh-pages/scenarios)
 
 These are currently configured with random existing websites to be replaced.
 
 * Watch a website for changes, then send an email  
     `WebsiteAgent -> EmailAgent`  
-    [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/website-email-notifier.json)  
+    [Scenario Definition](https://albertsun.github.io/huginn-newsroom-scenarios/scenarios/website-email-notifier.json)  
     In this case, one of Donald Trump's position pages
 
 * Watch a website for changes in text, then send a slack notification  
     `WebsiteAgent -> SlackAgent`  
-    [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/website-slack-notifier.json)  
+    [Scenario Definition](https://albertsun.github.io/huginn-newsroom-scenarios/scenarios/website-slack-notifier.json)  
     In this case, one of Donald Trump's position pages
 
 * Scrape a website and save it's text to [Stevedore](https://github.com/newsdev/stevedore)  
     `WebsiteAgent -> PostAgent`  
-    [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/website-to-stevedore.json)  
+    [Scenario Definition](https://albertsun.github.io/huginn-newsroom-scenarios/scenarios/website-to-stevedore.json)  
 
 * Follow an RSS feed, and send the full text of its items to [Stevedore](https://github.com/newsdev/stevedore)  
     `RssAgent -> WebsiteAgent -> PostAgent`  
-    [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/rss-full-text-scrape-to-stevedore.json)  
+    [Scenario Definition](https://albertsun.github.io/huginn-newsroom-scenarios/scenarios/rss-full-text-scrape-to-stevedore.json)  
     In this case, scraping all EEOC press releases
 
 * Filter the NYTimes Timeswire API and email stories matching a regex  
     `WebsiteAgent -> TriggerAgent -> EmailAgent`  
-    [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/timeswire-story-filter-email.json)  
+    [Scenario Definition](https://albertsun.github.io/huginn-newsroom-scenarios/scenarios/timeswire-story-filter-email.json)  
     In this case, filtering for any politics stories
 
 * Alert a Slack channel when the lead story on the homepage is changed
     `WebsiteAgent -> SlackAgent`  
-    [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/hp-top-story-to-slack.json)  
+    [Scenario Definition](https://albertsun.github.io/huginn-newsroom-scenarios/scenarios/hp-top-story-to-slack.json)  
 
 * Get a morning email with new stories from a particular author
     `WebsiteAgent -> TriggerAgent -> EmailDigestAgent`  
-    [Scenario Definition](https://raw.githubusercontent.com/albertsun/huginn-newsroom-scenarios/master/scenarios/author-filter-morning-email.json)  
+    [Scenario Definition](https://albertsun.github.io/huginn-newsroom-scenarios/scenarios/author-filter-morning-email.json)  
     In this case, following http://www.theverge.com/tag/fitness and filtering for stories by Lauren Goode
 
 
