@@ -17,7 +17,7 @@
         "webhook_url": "{% credential nytnews_slack_webhook %}",
         "channel": "#codeconvening-test",
         "username": "Huginn",
-        "message": "{{text}}",
+        "message": "{{title}} {{url}}",
         "icon": ""
       },
       "propagate_immediately": true
