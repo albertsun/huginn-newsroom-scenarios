@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "name": "Timeswire Story Filter Email",
+  "description": "No description provided",
+  "source_url": "",
+  "guid": "e64ade82984d3a663b378e5c8566f175",
+  "tag_fg_color": "#ffffff",
+  "tag_bg_color": "#5bc0de",
+  "exported_at": "2016-04-18T23:21:58Z",
+  "agents": [
+    {
+      "type": "Agents::EmailAgent",
+      "name": "Timeswire Politics Story Email",
+      "disabled": false,
+      "guid": "6b0db3e694d885b01929e7e8aab8d044",
+      "options": {
+        "subject": "New Times Politics Story",
+        "headline": "Your stories:",
+        "expected_receive_period_in_days": "2",
+        "recipients": [
+          "YOUR_EMAIL@example.com"
+        ]
+      },
+      "propagate_immediately": true
+    },
+    {
+      "type": "Agents::WebsiteAgent",
+      "name": "Timeswire API",
+      "disabled": false,
+      "guid": "80741efafa586bc61a9338861347b044",
+      "options": {
+        "expected_update_period_in_days": "1",
+        "url": "http://api.nytimes.com/svc/news/v3/content/all/all/1.json?api-key=YOUR_KEY_HERE",
+        "type": "json",
+        "mode": "on_change",
+        "extract": {
+          "url": {
+            "path": "results[*].url"
+          },
+          "title": {
+            "path": "results[*].title"
+          },
+          "abstract": {
+            "path": "results[*].abstract"
+          }
+        }
+      },
+      "schedule": "every_1m",
+      "keep_events_for": 2592000,
+      "propagate_immediately": false
+    },
+    {
+      "type": "Agents::TriggerAgent",
+      "name": "Timeswire Politics Filter",
+      "disabled": false,
+      "guid": "852596fe64bc29901564488c332d904f",
+      "options": {
+        "expected_receive_period_in_days": "2",
+        "keep_event": "true",
+        "rules": [
+          {
+            "type": "regex",
+            "value": "/politics/",
+            "path": "url"
+          }
+        ],
+        "message": "New politics url"
+      },
+      "keep_events_for": 2592000,
+      "propagate_immediately": true
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "receiver": 2
+    },
+    {
+      "source": 2,
+      "receiver": 0
+    }
+  ],
+  "control_links": [
+
+  ]
+}
